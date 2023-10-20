@@ -14,9 +14,9 @@ suite = {
     "organizationUrl" : "http://www.graalvm.org/",
   },
   "scm" : {
-    "url" : "https://github.com/graalvm/graaljs",
-    "read" : "https://github.com/graalvm/graaljs.git",
-    "write" : "git@github.com:graalvm/graaljs.git",
+    "url" : "https://github.com/Anemone95/graaljs",
+    "read" : "https://github.com/Anemone95/graaljs.git",
+    "write" : "git@github.com:Anemone95/graaljs.git",
   },
 
   "imports" : {
