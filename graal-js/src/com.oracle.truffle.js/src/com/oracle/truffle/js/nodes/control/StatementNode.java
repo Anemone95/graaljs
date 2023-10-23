@@ -42,6 +42,7 @@ package com.oracle.truffle.js.nodes.control;
 
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.UnexpectedResultException;
+import com.oracle.truffle.js.aux.ModifiedResultStack;
 import com.oracle.truffle.js.nodes.JavaScriptNode;
 import com.oracle.truffle.js.runtime.Errors;
 import com.oracle.truffle.js.runtime.objects.Undefined;
@@ -55,7 +56,12 @@ public abstract class StatementNode extends JavaScriptNode {
 
     protected static boolean executeConditionAsBoolean(VirtualFrame frame, JavaScriptNode conditionNode) {
         try {
-            return conditionNode.executeBoolean(frame);
+            boolean result = conditionNode.executeBoolean(frame);
+            Object newResult = ModifiedResultStack.getResult(conditionNode.getSourceSection());
+            if (newResult instanceof Boolean) {
+                result = (Boolean) newResult;
+            }
+            return result;
         } catch (UnexpectedResultException ex) {
             throw Errors.shouldNotReachHere("the condition should always provide a boolean result");
         }

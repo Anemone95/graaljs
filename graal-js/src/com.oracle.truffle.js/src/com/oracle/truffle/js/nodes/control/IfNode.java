@@ -51,6 +51,7 @@ import com.oracle.truffle.api.instrumentation.Tag;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import com.oracle.truffle.api.nodes.UnexpectedResultException;
 import com.oracle.truffle.api.profiles.ConditionProfile;
+import com.oracle.truffle.js.aux.ModifiedResultStack;
 import com.oracle.truffle.js.nodes.JSNodeUtil;
 import com.oracle.truffle.js.nodes.JavaScriptNode;
 import com.oracle.truffle.js.nodes.access.JSConstantNode;
@@ -232,19 +233,34 @@ public final class IfNode extends StatementNode implements ResumableNode.WithInt
     }
 
     protected boolean executeCondition(VirtualFrame frame) {
+        boolean result;
         try {
-            return condition.executeBoolean(frame);
+            result = condition.executeBoolean(frame);
+            Object newResult = ModifiedResultStack.getResult(condition.getSourceSection());
+            if (newResult instanceof Boolean) {
+                result = (Boolean) newResult;
+            }
+            return result;
         } catch (UnexpectedResultException ex) {
+            Object newResult = ModifiedResultStack.getResult(condition.getSourceSection());
             CompilerDirectives.transferToInterpreterAndInvalidate();
             JavaScriptNode node = insertToBoolean();
             if (node instanceof JSConstantNode) {
                 try {
-                    return node.executeBoolean(frame);
+                    result = node.executeBoolean(frame);
+                    if (newResult instanceof Boolean) {
+                        result = (Boolean) newResult;
+                    }
+                    return result;
                 } catch (UnexpectedResultException e) {
                     throw CompilerDirectives.shouldNotReachHere(e);
                 }
             } else if (node instanceof JSUnaryNode) {
-                return (boolean) ((JSUnaryNode) node).execute(frame, ex.getResult());
+                result = (boolean) ((JSUnaryNode) node).execute(frame, ex.getResult());
+                if (newResult instanceof Boolean) {
+                    result = (Boolean) newResult;
+                }
+                return result;
             } else {
                 throw CompilerDirectives.shouldNotReachHere("Unexpected result node of JSToBooleanNode.create");
             }

@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="jdk11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/sdk-js-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/sdk-js-tests.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-stats.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-snapshot-tool.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-scriptengine-tests.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-scriptengine.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/js-interop-micro-benchmarks.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-scriptengine-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-scriptengine.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-tests.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-launcher.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/js-interop-micro-benchmarks.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-stats.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-factory-processor.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/graaljs-launcher.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-factory-processor.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/jdk17/dists/jdk11/truffle-js-snapshot-tool.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

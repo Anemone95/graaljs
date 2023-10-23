@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="dists1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/dists/trufflenode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/dists/trufflenode-test.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

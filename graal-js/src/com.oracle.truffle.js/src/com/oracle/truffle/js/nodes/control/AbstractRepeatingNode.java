@@ -56,6 +56,9 @@ abstract class AbstractRepeatingNode extends JavaScriptNode implements Repeating
 
     AbstractRepeatingNode(JavaScriptNode condition, JavaScriptNode body) {
         this.conditionNode = JSToBooleanUnaryNode.create(condition);
+        if (this.conditionNode.getSourceSection() == null && condition.getSourceSection() != null) {
+            this.conditionNode.setSourceSection(condition.getSourceSection());
+        }
         this.bodyNode = body;
     }
 

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="dists">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/graaljs-scriptengine.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/graaljs-scriptengine-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/js-interop-micro-benchmarks.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/graaljs-launcher.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/truffle-js-factory-processor.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/truffle-stats.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/truffle-js-snapshot-tool.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/truffle-js-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/sdk-js-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-js/mxbuild/dists/graaljs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

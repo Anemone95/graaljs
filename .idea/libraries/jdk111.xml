@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jdk111">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/jdk17/dists/jdk11/trufflenode.src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/jdk17/dists/jdk11/trufflenode-test.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/jdk17/dists/jdk11/trufflenode.jar!/" />
+      <root url="jar://$PROJECT_DIR$/graal-nodejs/mxbuild/jdk17/dists/jdk11/trufflenode-test.src.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
