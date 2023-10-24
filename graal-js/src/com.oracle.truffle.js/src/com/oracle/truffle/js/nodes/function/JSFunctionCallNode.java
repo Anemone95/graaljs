@@ -40,11 +40,7 @@
  */
 package com.oracle.truffle.js.nodes.function;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 
 import com.oracle.truffle.api.CallTarget;
@@ -73,6 +69,7 @@ import com.oracle.truffle.api.nodes.RootNode;
 import com.oracle.truffle.api.profiles.BranchProfile;
 import com.oracle.truffle.api.profiles.ValueProfile;
 import com.oracle.truffle.api.strings.TruffleString;
+import com.oracle.truffle.js.aux.ModifiedResultStack;
 import com.oracle.truffle.js.nodes.JSGuards;
 import com.oracle.truffle.js.nodes.JavaScriptBaseNode;
 import com.oracle.truffle.js.nodes.JavaScriptNode;
@@ -534,7 +531,14 @@ public abstract class JSFunctionCallNode extends JavaScriptNode implements JavaS
             Object receiver = evaluateReceiver(frame, target);
             Object function = functionNode.execute(frame);
             // Note that the arguments must not be evaluated before the target.
-            return executeCall(createArguments(frame, receiver, function));
+            Object[] args = createArguments(frame, receiver, function);
+            Object hookedArgs = ModifiedResultStack.getResult(getSourceSection());
+            if (hookedArgs instanceof Map) {
+                Map<String, Object> hookedArgsMap = (Map<String, Object>) hookedArgs;
+                args[JSArguments.THIS_OBJECT_INDEX] = hookedArgsMap.get("this");
+                args[JSArguments.FUNCTION_OBJECT_INDEX] = hookedArgsMap.get("function");
+            }
+            return executeCall(args);
         }
 
         final Object executeTarget(VirtualFrame frame) {
@@ -737,7 +741,14 @@ public abstract class JSFunctionCallNode extends JavaScriptNode implements JavaS
             Object receiver = evaluateReceiver(frame, target);
             Object function = executeFunctionWithTarget(frame, target);
             // Note that the arguments must not be evaluated before the target.
-            return executeCall(createArguments(frame, receiver, function));
+            Object[] args = createArguments(frame, receiver, function);
+            Object hookedArgs = ModifiedResultStack.getResult(getSourceSection());
+            if (hookedArgs instanceof Map) {
+                Map<String, Object> hookedArgsMap = (Map<String, Object>) hookedArgs;
+                args[JSArguments.THIS_OBJECT_INDEX] = hookedArgsMap.get("this");
+                args[JSArguments.FUNCTION_OBJECT_INDEX] = hookedArgsMap.get("function");
+            }
+            return executeCall(args);
         }
 
         protected final Object executeTarget(VirtualFrame frame) {
@@ -846,38 +857,7 @@ public abstract class JSFunctionCallNode extends JavaScriptNode implements JavaS
 
         @Override
         protected final Object[] createArguments(VirtualFrame frame, Object target, Object function) {
-            int functionIdx = -1;
-            int targetIdx = -1;
-            int idx=0;
-            while (true) {
-                Object slotVal = frame.getAuxiliarySlot(idx);
-                if (slotVal==null) {
-                    break;
-                }
-                if (functionIdx>=0 && targetIdx >=0) {
-                    break;
-                }
-                if (slotVal == function) {
-                    functionIdx = idx;
-                } else if (slotVal == target) {
-                    targetIdx = idx;
-                }
-                idx++;
-            }
-
             Object arg0 = argument0.execute(frame);
-            if (functionIdx >= 0) {
-                Object func = frame.getAuxiliarySlot(functionIdx);
-                if (func!=null) {
-                    function = func;
-                }
-            }
-            if (targetIdx >= 0) {
-                Object target2 = frame.getAuxiliarySlot(targetIdx);
-                if (target2!=null) {
-                    target = target2;
-                }
-            }
             return JSArguments.createOneArg(target, function, arg0);
         }
 

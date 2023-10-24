@@ -50,8 +50,8 @@ public final class JSArguments {
     public static final Object[] EMPTY_ARGUMENTS_ARRAY = new Object[0];
     public static final int RUNTIME_ARGUMENT_COUNT = 2;
 
-    private static final int THIS_OBJECT_INDEX = 0;
-    private static final int FUNCTION_OBJECT_INDEX = 1;
+    public static final int THIS_OBJECT_INDEX = 0;
+    public static final int FUNCTION_OBJECT_INDEX = 1;
     private static final int NEW_TARGET_INDEX = RUNTIME_ARGUMENT_COUNT;
 
     private static final int RESUME_EXECUTION_CONTEXT = RUNTIME_ARGUMENT_COUNT;
